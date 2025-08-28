@@ -1,69 +1,55 @@
-# React + TypeScript + Vite
+№📌 Todo List App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Приложение "Список задач" с аутентификацией, интеграцией с API и управлением состоянием через Redux Toolkit.
+Реализовано с использованием React, TypeScript, Vite, Tailwind CSS, Redux Toolkit, Axios.
 
-Currently, two official plugins are available:
+__
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+№№🚀 Функционал
 
-## Expanding the ESLint configuration
+№№№🔑 Аутентификация
+- Регистрация и вход по username и password
+- Хранение accessToken и refreshToken в Redux + localStorage
+- Axios interceptors:
+- автоматическое добавление accessToken в Authorization заголовки
+- обновление accessToken по refreshToken при 401
+- редирект на /login, если пользователь не авторизован
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+№№№✅ Список задач
+- Добавление новой задачи
+- Отображение всех задач пользователя
+- Возможность отметить задачу выполненной
+- Удаление задачи
+- Фильтры: Все / Активные / Выполненные
+- Обработка loading и ошибок API (спиннер, сообщения)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+№№🛠️ Технологии
+№№№Фронтенд
+-⚡ Vite
+ (React + TypeScript)
+- 🎨 Tailwind CSS
+- 🔄 Redux Toolkit
+- 📡 Axios
+- 🌍 React Router
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+№№№Бэкенд
+Используется готовое API:
+- 📄 Swagger-документация → http://xserver-krv.ru:91/api-docs/#/
+- 🌐 API → http://xserver-krv.ru:91
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+№№ ⚙️ Установка и запуск
+
+1. Клонировать репозиторий:
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+git clone https://github.com/MallonsoFrey/ITK-task.git
+cd itk-task
+```
+2. Установить зависимости:
+```
+cd client
+npm install
+```
+3. Запустить фронтенд:
+```
+npm run dev
 ```
