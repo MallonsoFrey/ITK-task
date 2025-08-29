@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-type Props = { onAdd: (text: string) => void };
+type Props = { onAdd: (title: string) => Promise<void> };
 
 export default function TodoForm({ onAdd }: Props) {
-  const [newTask, setNewTask] = useState("");
+  const [newTask, setNewTask] = useState<string>("");
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();

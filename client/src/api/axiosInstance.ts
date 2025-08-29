@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://xserver-krv.ru:91", // теперь внешний сервер
+  baseURL: "http://xserver-krv.ru:91",
   headers: {
     "Content-Type": "application/json",
   },

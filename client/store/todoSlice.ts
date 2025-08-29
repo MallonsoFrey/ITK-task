@@ -27,8 +27,8 @@ export const fetchTodos = createAsyncThunk("todos/fetchTodos", async () => {
 export const addTodo = createAsyncThunk(
   "todos/addTodo",
   async (title: string) => {
-    const res = await api.post("/todos", { title }); // <- title вместо text
-    return res.data; // сервер вернёт созданную задачу
+    const res = await api.post("/todos", { title });
+    return res.data;
   }
 );
 
@@ -42,7 +42,7 @@ export const toggleTodo = createAsyncThunk(
 
 export const deleteTodo = createAsyncThunk("todos/deleteTodo", async (id: number) => {
   await api.delete(`/todos/${id}`);
-  return id; // просто возвращаем id удалённой
+  return id; 
 });
 
 const todoSlice = createSlice({
@@ -51,7 +51,6 @@ const todoSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // fetchTodos
       .addCase(fetchTodos.pending, (state) => {
         state.loading = true;
       })
@@ -63,16 +62,13 @@ const todoSlice = createSlice({
         state.loading = false;
         state.error = action.error.message || "Ошибка загрузки";
       })
-      // addTodo
       .addCase(addTodo.fulfilled, (state, action) => {
         state.todos.unshift(action.payload);
       })
-      // toggleTodo
       .addCase(toggleTodo.fulfilled, (state, action) => {
-        const idx = state.todos.findIndex((t) => t.id === action.payload.id);
-        if (idx !== -1) state.todos[idx] = action.payload;
+        const index = state.todos.findIndex((t) => t.id === action.payload.id);
+        if (index !== -1) state.todos[index] = action.payload;
       })
-      // deleteTodo
       .addCase(deleteTodo.fulfilled, (state, action) => {
         state.todos = state.todos.filter((t) => t.id !== action.payload);
       });
